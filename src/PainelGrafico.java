@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 public class PainelGrafico extends JFrame{
 
@@ -9,8 +8,7 @@ public class PainelGrafico extends JFrame{
     // Botão da igualdade.
     JButton botao_igual;
     // Caixa de texto.
-    JTextField text1;
-    JTextField text2;
+    JTextField caixa_operacoes;
     JLabel titulo;
 
     //Construtor
@@ -19,15 +17,6 @@ public class PainelGrafico extends JFrame{
         gerarTela();
         botaoIgualdade();
         //botao_igual.addActionListener(this::Processar);// Esse está chamando o método "acao1"
-
-
-
-        //Caixa de texto
-        text2 = new JTextField();
-        text2.setBounds(100,300,100,50);
-        text2.setFont(new Font("Arial",Font.ITALIC,30));
-
-        add(text2);
 
         JLabel num1 = new JLabel("Número 1");
         num1.setBounds(10,200,300,50);
@@ -41,7 +30,7 @@ public class PainelGrafico extends JFrame{
 
         add(num2);
 
-        titulo = new JLabel("SOMADOR PARA LOREZINHA");
+        titulo = new JLabel("");
         titulo.setBounds(50,50,700,200);
         titulo.setFont(new Font("Arial", Font.PLAIN, 30));
 
@@ -50,6 +39,7 @@ public class PainelGrafico extends JFrame{
 
     }
 
+    // Este método serve para criar a janela da calculadora.
     private void gerarTela() {
         // ***** Gerando a janela do aplicativo. *****
 
@@ -57,18 +47,20 @@ public class PainelGrafico extends JFrame{
         setSize(335,535);
         // Entitulando
         setTitle("Calculadora Java");
-        // Configuração para quando fechar a janela encerrar o programa.
+        // Método para quando fechar a janela encerrar o programa.
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // Configuração para não deixar maximizar a tela
+        // Método para não deixar maximizar a tela
         setResizable(false);
-        // Configuração para a janela aparecer no meio da tela ao iniciar.
+        // Método para a janela aparecer no meio da tela ao iniciar.
         setLocationRelativeTo(null);
         // Muda a cor do fundo da tela para cinza.
         getContentPane().setBackground(new Color(23, 21, 23, 255));
-        //
+        // Deixa livre a escolha da posição, tamanho e etc..
         setLayout(null);
+
     }
 
+    // Este método serve para adicionar o botão de igualdade.
     private void botaoIgualdade() {
         // ***** Gerando um botão. *****
 
@@ -87,27 +79,20 @@ public class PainelGrafico extends JFrame{
 
     }
 
+    // Este método serve para adicionar a caixa de texto que mostra as operações
     private void caixaTextoOperacoes() {
-        // ***** Gerando um botão. *****
-        
-        text1 = new JTextField();
-        text1.setBounds(100,200,100,50);
-        text1.setFont(new Font("Arial",Font.ITALIC,30));
-        text1.setEditable(false);
-        add(text1);
+        // ***** Gerando a caixa de texto das operações. *****
+
+        // Instancia o obejto localmente.
+        caixa_operacoes = new JTextField();
+        // Coordenadas dessa caixa de texto.
+        caixa_operacoes.setBounds(100,200,100,50);
+        // Fonte e tamanho da letra.
+        caixa_operacoes.setFont(new Font("Arial",Font.ITALIC,30));
+        // Método para o usuário não interagir com a caixa de texto.
+        caixa_operacoes.setEditable(false);
+        // Adiciona o objeto.
+        add(caixa_operacoes);
     }
 
-    //Este é um método para dar alguma ação ao botões
-    private void Processar(ActionEvent actionEvent) {
-
-        Float numero1 = Float.parseFloat(text1.getText());
-        Float numero2 = Float.parseFloat(text2.getText());
-
-
-        float soma = numero1 + numero2;
-
-        titulo.setText("A soma é "+ soma);
-        /*JOptionPane.showMessageDialog(null,"A soma é: " + soma, "Confirmado!",
-                JOptionPane.INFORMATION_MESSAGE);*/
-    }
 }
