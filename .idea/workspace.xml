@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ffcbe2d3-f31f-4af2-93cb-47e955ecc698" name="Changes" comment="" />
+    <list default="true" id="ffcbe2d3-f31f-4af2-93cb-47e955ecc698" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PainelGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PainelGrafico.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,6 +32,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "Parte-Grafica",
     "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/lucas/OneDrive/Documentos/Estudos_Em_Java(Verdadeiro)",
     "onboarding.tips.debug.path": "C:/Users/lucas/OneDrive/Documentos/Calculadora gráfica com java/main/src/Main.java",
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
