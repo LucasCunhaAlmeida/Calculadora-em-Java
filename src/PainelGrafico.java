@@ -1,49 +1,16 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class PainelGrafico extends JFrame{
 
     // ****** Objetos Globais. *****
 
-    // Botão da igualdade.
-    JButton botao_igual;
-    // Botão da soma.
-    JButton botao_soma;
-    // Botão da subtração.
-    JButton botao_subt;
-    // Botão de multiplicação.
-    JButton botao_mult;
-    // Botão Divisão.
-    JButton botao_div;
-    // Botão número 0.
-    JButton botao_0;
-    // Botão virgula.
-    JButton botao_virg;
-    // Botão número 1.
-    JButton botao_1;
-    // Botão número 2.
-    JButton botao_2;
-    // Botão número 3
-    JButton botao_3;
-    // Botão número 4
-    JButton botao_4;
-    // Botão número 5
-    JButton botao_5;
-    // Botão número 6
-    JButton botao_6;
-    // Botão número 7
-    JButton botao_7;
-    // Botão número 8
-    JButton botao_8;
-    // Botão número 9
-    JButton botao_9;
-    // Botão AC
-    JButton botao_ac;
-    // Botão porcentagem
-    JButton botao_porcen;
-    // Caixa de texto.
-    JTextField caixa_operacoes;
-    JLabel titulo;
+    protected JButton botaoPressionado, botao_igual, botao_soma, botao_subt,
+            botao_mult, botao_div, botao_0, botao_virg, botao_1, botao_2,
+            botao_3, botao_4, botao_5, botao_6, botao_7, botao_8, botao_9,
+            botao_ac, botao_porcen;
+    protected JTextField caixa_operacoes;
 
     // ***** Construtor *****
     public PainelGrafico(){
@@ -70,18 +37,17 @@ public class PainelGrafico extends JFrame{
         botaoPorcen();
         caixaTextoOperacoes();
         setVisible(true);
-
     }
 
     // Este método serve para mudar o Icone do aplicativo que aparece na janela
-    private void iconeJanela() {
+    protected void iconeJanela() {
         ImageIcon img = new ImageIcon("C:\\Users\\lucas\\OneDrive\\" +
                 "Documentos\\Calculadora gráfica com java\\main\\src\\resources\\Icone Calc.png");
 
         this.setIconImage(img.getImage());
     }
     // Este método serve para criar a janela da calculadora.
-    private void gerarTela() {
+    protected void gerarTela() {
         // ***** Gerando a janela do aplicativo. *****
 
         // Tamanho da tela.
@@ -102,7 +68,7 @@ public class PainelGrafico extends JFrame{
     }
 
     // Este método serve para adicionar o botão de igualdade.
-    private void botaoIgualdade() {
+    protected void botaoIgualdade() {
         // ***** Gerando um botão. *****
 
         // Criando um objeto JButton e nomeando diretamente pelo construtor.
@@ -120,7 +86,7 @@ public class PainelGrafico extends JFrame{
 
     }
 
-    private void botaoSoma() {
+    protected void botaoSoma() {
         // ***** Gerando um botão. *****
 
         // Criando um objeto JButton e nomeando diretamente pelo construtor.
@@ -137,7 +103,7 @@ public class PainelGrafico extends JFrame{
         add(botao_soma);
     }
 
-    private void botaoSubt() {
+    protected void botaoSubt() {
         // ***** Gerando um botão. *****
 
         // Criando um objeto JButton e nomeando diretamente pelo construtor.
@@ -154,7 +120,7 @@ public class PainelGrafico extends JFrame{
         add(botao_subt);
     }
 
-    private void botaoMult() {
+    protected void botaoMult() {
         // ***** Gerando um botão. *****
 
         // Criando um objeto JButton e nomeando diretamente pelo construtor.
@@ -171,7 +137,7 @@ public class PainelGrafico extends JFrame{
         add(botao_mult);
     }
 
-    private void botaoDiv() {
+    protected void botaoDiv() {
         // ***** Gerando um botão. *****
 
         // Criando um objeto JButton e nomeando diretamente pelo construtor.
@@ -188,7 +154,7 @@ public class PainelGrafico extends JFrame{
         add(botao_div);
     }
 
-    private void botaoNum0() {
+    protected void botaoNum0() {
         // ***** Gerando um botão. *****
 
         // Criando um objeto JButton e nomeando diretamente pelo construtor.
@@ -205,7 +171,7 @@ public class PainelGrafico extends JFrame{
         add(botao_0);
     }
 
-    private void botaoVirgula() {
+    protected void botaoVirgula() {
         // ***** Gerando um botão. *****
 
         // Criando um objeto JButton e nomeando diretamente pelo construtor.
@@ -222,7 +188,7 @@ public class PainelGrafico extends JFrame{
         add(botao_virg);
     }
 
-    private void botaoNum1() {
+    protected void botaoNum1() {
         // ***** Gerando um botão. *****
 
         // Criando um objeto JButton e nomeando diretamente pelo construtor.
@@ -239,7 +205,7 @@ public class PainelGrafico extends JFrame{
         add(botao_1);
     }
 
-    private void botaoNum2() {
+    protected void botaoNum2() {
         // ***** Gerando um botão. *****
 
         // Criando um objeto JButton e nomeando diretamente pelo construtor.
@@ -256,7 +222,7 @@ public class PainelGrafico extends JFrame{
         add(botao_2);
     }
 
-    private void botaoNum3() {
+    protected void botaoNum3() {
         // ***** Gerando um botão. *****
 
         // Criando um objeto JButton e nomeando diretamente pelo construtor.
@@ -273,7 +239,7 @@ public class PainelGrafico extends JFrame{
         add(botao_3);
     }
 
-    private void botaoNum4() {
+    protected void botaoNum4() {
         // ***** Gerando um botão. *****
 
         // Criando um objeto JButton e nomeando diretamente pelo construtor.
@@ -290,7 +256,7 @@ public class PainelGrafico extends JFrame{
         add(botao_4);
     }
 
-    private void botaoNum5() {
+    protected void botaoNum5() {
         // ***** Gerando um botão. *****
 
         // Criando um objeto JButton e nomeando diretamente pelo construtor.
@@ -307,7 +273,7 @@ public class PainelGrafico extends JFrame{
         add(botao_5);
     }
 
-    private void botaoNum6() {
+    protected void botaoNum6() {
         // ***** Gerando um botão. *****
 
         // Criando um objeto JButton e nomeando diretamente pelo construtor.
@@ -324,7 +290,7 @@ public class PainelGrafico extends JFrame{
         add(botao_6);
     }
 
-    private void botaoNum7() {
+    protected void botaoNum7() {
         // ***** Gerando um botão. *****
 
         // Criando um objeto JButton e nomeando diretamente pelo construtor.
@@ -341,7 +307,7 @@ public class PainelGrafico extends JFrame{
         add(botao_7);
     }
 
-    private void botaoNum8() {
+    protected void botaoNum8() {
         // ***** Gerando um botão. *****
 
         // Criando um objeto JButton e nomeando diretamente pelo construtor.
@@ -358,7 +324,7 @@ public class PainelGrafico extends JFrame{
         add(botao_8);
     }
 
-    private void botaoNum9() {
+    protected void botaoNum9() {
         // ***** Gerando um botão. *****
 
         // Criando um objeto JButton e nomeando diretamente pelo construtor.
@@ -374,7 +340,7 @@ public class PainelGrafico extends JFrame{
         // Adicionando ele na tela.
         add(botao_9);
     }
-    private void botaoAC() {
+    protected void botaoAC() {
         // ***** Gerando um botão. *****
 
         // Criando um objeto JButton e nomeando diretamente pelo construtor.
@@ -391,7 +357,7 @@ public class PainelGrafico extends JFrame{
         add(botao_ac);
     }
 
-    private void botaoPorcen() {
+    protected void botaoPorcen() {
         // ***** Gerando um botão. *****
 
         // Criando um objeto JButton e nomeando diretamente pelo construtor.
@@ -408,7 +374,7 @@ public class PainelGrafico extends JFrame{
         add(botao_porcen);
     }
     // Este método serve para adicionar a caixa de texto que mostra as operações
-    private void caixaTextoOperacoes() {
+    protected void caixaTextoOperacoes() {
         // ***** Gerando a caixa de texto das operações. *****
 
         // Instancia o obejto localmente.
