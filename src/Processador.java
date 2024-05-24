@@ -1,147 +1,313 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.util.regex.Pattern;
 
 public class Processador extends PainelGrafico{
 
     public Processador () {
+
         instanciaAcaoBotoes ();
+
     }
+
     static Integer numero_pressionado = 0;
     static double num1 = 0;
     static double num2 = 0;
-    static char operacao_pressionado;
-
+    static char operacao_pressionado = 'n';
+    static boolean virgula = false;
 
     public void lerOpcaoBotao(ActionEvent e) {
 
         botaoPressionado = (JButton) e.getSource();
 
         if (botaoPressionado == botao_0) {
-            numero_pressionado = 0;
-            controleNumeros(false);
-        } else if (botaoPressionado == botao_1) {
-            numero_pressionado = 1;
-            controleNumeros(false);
-        } else if (botaoPressionado == botao_2) {
-            numero_pressionado = 2;
-            controleNumeros(false);
-        } else if (botaoPressionado == botao_3) {
-            numero_pressionado = 3;
-            controleNumeros(false);
-        } else if (botaoPressionado == botao_4) {
-            numero_pressionado = 4;
-            controleNumeros(false);
-        } else if (botaoPressionado == botao_5) {
-            numero_pressionado = 5;
-            controleNumeros(false);
-        } else if (botaoPressionado == botao_6) {
-            numero_pressionado = 6;
-            controleNumeros(false);
-        } else if (botaoPressionado == botao_7) {
-            numero_pressionado = 7;
-            controleNumeros(false);
-        } else if (botaoPressionado == botao_8) {
-            numero_pressionado = 8;
-            controleNumeros(false);
-        } else if (botaoPressionado == botao_9) {
-            numero_pressionado = 9;
-            controleNumeros(false);
-        } else if (botaoPressionado == botao_igual) {
-            operacao_pressionado = '=';
-            controleNumeros(true);
-        } else if (botaoPressionado == botao_soma) {
-            operacao_pressionado = '+';
-            controleNumeros(true);
-        } else if (botaoPressionado == botao_subt) {
-            operacao_pressionado = '-';
-            controleNumeros(true);
-        } else if (botaoPressionado == botao_mult) {
-            operacao_pressionado = 'x';
-            controleNumeros(true);
-        } else if (botaoPressionado == botao_div) {
-            operacao_pressionado = '/';
-            controleNumeros(true);
-        } else if (botaoPressionado == botao_porcen) {
-            operacao_pressionado = '%';
-            controleNumeros(true);
-        } else if (botaoPressionado == botao_virg) {
-            operacao_pressionado = ',';
-            controleNumeros(false);
-        } else {
-            operacao_pressionado = 'A'; // Abreviação de AC.
-            controleNumeros(true);
-        }
 
-    }
-
-    static int num1_ou_num2 = 1;
-    public static void controleNumeros(boolean operador) {
-
-        // Escolhendo qual variavel vai ser preenchida, 1 para num1 e 2 para num2.
-        if (num1_ou_num2 == 1) {
-            // A vez aqui é do num1.
-
-            if (!operador) {
-                // Se for não for algum dos operadores, mas pode ser uma vírgula.
-
-                // Chamando a o método para preencher o num1
+            if (chave == 0) {
+                controleDeEstrutura();
+                numero_pressionado = 0;
                 obterNum1(false);
-
-            } else {
-                /* Mandamos um false para obterNum1, pois esse é o sinal para
-                   concatenar os números guardados antes e após a vírgula,
-                   fazendo com que se preencha o num1 com o número completo. */
-
-                obterNum1(true);
-
-                // Agora trocamos de num1 para num2, a variável a ser preenchida.
-                num1_ou_num2 = 2;
-
-            }
-        } else if (num1_ou_num2 == 2) {
-            // A vez aqui é do num2.
-
-            if (!operador) {
-                // Se for não for algum dos operadores, mas pode ser uma vírgula.
-
-                // Chamando a o método para preencher o num2
+            } else if (chave == 1) {
+                numero_pressionado = 0;
+                obterNum1(false);
+            } else if (chave == 3) {
+                controleDeEstrutura();
+                numero_pressionado = 0;
                 obterNum2(false);
-            } else {
-                /* Mandamos um false para obterNum2, pois esse é o sinal para
-                   concatenar os números guardados antes e após a vírgula,
-                   fazendo com que se preencha o num2 com o número completo. */
-
-                obterNum2(true);
-
-                // Agora trocamos de num2 para num1, a variável a ser preenchida.
-                num1_ou_num2 = 1;
-
+            } else if (chave == 4) {
+                numero_pressionado = 0;
+                obterNum2(false);
             }
+
+        } else if (botaoPressionado == botao_1) {
+
+            if (chave == 0) {
+                controleDeEstrutura();
+                numero_pressionado = 1;
+                obterNum1(false);
+            } else if (chave == 1) {
+                numero_pressionado = 1;
+                obterNum1(false);
+            } else if (chave == 3) {
+                controleDeEstrutura();
+                numero_pressionado = 1;
+                obterNum2(false);
+            } else if (chave == 4) {
+                numero_pressionado = 1;
+                obterNum2(false);
+            }
+
+        } else if (botaoPressionado == botao_2) {
+
+            if (chave == 0) {
+                controleDeEstrutura();
+                numero_pressionado = 2;
+                obterNum1(false);
+            } else if (chave == 1) {
+                numero_pressionado = 2;
+                obterNum1(false);
+            } else if (chave == 3) {
+                controleDeEstrutura();
+                numero_pressionado = 2;
+                obterNum2(false);
+            } else if (chave == 4) {
+                numero_pressionado = 2;
+                obterNum2(false);
+            }
+
+        } else if (botaoPressionado == botao_3) {
+
+            if (chave == 0) {
+                controleDeEstrutura();
+                numero_pressionado = 3;
+                obterNum1(false);
+            } else if (chave == 1) {
+                numero_pressionado = 3;
+                obterNum1(false);
+            } else if (chave == 3) {
+                controleDeEstrutura();
+                numero_pressionado = 3;
+                obterNum2(false);
+            } else if (chave == 4) {
+                numero_pressionado = 3;
+                obterNum2(false);
+            }
+
+        } else if (botaoPressionado == botao_4) {
+
+            if (chave == 0) {
+                controleDeEstrutura();
+                numero_pressionado = 4;
+                obterNum1(false);
+            } else if (chave == 1) {
+                numero_pressionado = 4;
+                obterNum1(false);
+            } else if (chave == 3) {
+                controleDeEstrutura();
+                numero_pressionado = 4;
+                obterNum2(false);
+            } else if (chave == 4) {
+                numero_pressionado = 4;
+                obterNum2(false);
+            }
+
+        } else if (botaoPressionado == botao_5) {
+
+            if (chave == 0) {
+                controleDeEstrutura();
+                numero_pressionado = 5;
+                obterNum1(false);
+            } else if (chave == 1) {
+                numero_pressionado = 5;
+                obterNum1(false);
+            } else if (chave == 3) {
+                controleDeEstrutura();
+                numero_pressionado = 5;
+                obterNum2(false);
+            } else if (chave == 4) {
+                numero_pressionado = 5;
+                obterNum2(false);
+            }
+
+        } else if (botaoPressionado == botao_6) {
+
+            if (chave == 0) {
+                controleDeEstrutura();
+                numero_pressionado = 6;
+                obterNum1(false);
+            } else if (chave == 1) {
+                numero_pressionado = 6;
+                obterNum1(false);
+            } else if (chave == 3) {
+                controleDeEstrutura();
+                numero_pressionado = 6;
+                obterNum2(false);
+            } else if (chave == 4) {
+                numero_pressionado = 6;
+                obterNum2(false);
+            }
+
+        } else if (botaoPressionado == botao_7) {
+
+            if (chave == 0) {
+                controleDeEstrutura();
+                numero_pressionado = 7;
+                obterNum1(false);
+            } else if (chave == 1) {
+                numero_pressionado = 7;
+                obterNum1(false);
+            } else if (chave == 3) {
+                controleDeEstrutura();
+                numero_pressionado = 7;
+                obterNum2(false);
+            } else if (chave == 4) {
+                numero_pressionado = 7;
+                obterNum2(false);
+            }
+
+        } else if (botaoPressionado == botao_8) {
+
+            if (chave == 0) {
+                controleDeEstrutura();
+                numero_pressionado = 8;
+                obterNum1(false);
+            } else if (chave == 1) {
+                numero_pressionado = 8;
+                obterNum1(false);
+            } else if (chave == 3) {
+                controleDeEstrutura();
+                numero_pressionado = 8;
+                obterNum2(false);
+            } else if (chave == 4) {
+                numero_pressionado = 8;
+                obterNum2(false);
+            }
+
+        } else if (botaoPressionado == botao_9) {
+
+            if (chave == 0) {
+                controleDeEstrutura();
+                numero_pressionado = 9;
+                obterNum1(false);
+            } else if (chave == 1) {
+                numero_pressionado = 9;
+                obterNum1(false);
+            } else if (chave == 3) {
+                controleDeEstrutura();
+                numero_pressionado = 9;
+                obterNum2(false);
+            } else if (chave == 4) {
+                numero_pressionado = 9;
+                obterNum2(false);
+            }
+
+        } else if (botaoPressionado == botao_igual) {
+
+            // Talvez aqui mude
+            if (chave == 4) {
+                /* Se a chave estiver valendo 4, é para
+                 * fazer a operação matemática. */
+                obterNum2(true);
+            }
+
+        } else if (botaoPressionado == botao_soma) {
+
+            if (chave == 1) {
+                obterNum1(true);
+                operacao_pressionado = '+';
+                controleDeEstrutura();
+            } else if (chave == 2) {
+                /* Aqui é por conta que está sendo feito uma nova operação,
+                 * com um resultado já processado anteriormente. */
+                operacao_pressionado = '+';
+                controleDeEstrutura();
+            }
+
+        } else if (botaoPressionado == botao_subt) {
+
+            if (chave == 0) {
+                operacao_pressionado = '-';
+                controleDeEstrutura();
+            } else if (chave == 1) {
+                obterNum1(true);
+                operacao_pressionado = '-';
+                controleDeEstrutura();
+            } else if (chave == 3) {
+                operacao_pressionado = '-';
+                controleDeEstrutura();
+            } else if (chave == 2) {
+                /* Aqui é por conta que está sendo feito uma nova operação,
+                 * com um resultado já processado anteriormente. */
+                operacao_pressionado = '-';
+                controleDeEstrutura();
+            }
+
+
+        } else if (botaoPressionado == botao_mult) {
+
+            if (chave == 1) {
+                obterNum1(true);
+                operacao_pressionado = 'x';
+                controleDeEstrutura();
+            } else if (chave == 2) {
+                /* Aqui é por conta que está sendo feito uma nova operação,
+                 * com um resultado já processado anteriormente. */
+                operacao_pressionado = 'x';
+                controleDeEstrutura();
+            }
+
+        } else if (botaoPressionado == botao_div) {
+
+            if (chave == 1) {
+                obterNum1(true);
+                operacao_pressionado = '/';
+                controleDeEstrutura();
+            } else if (chave == 2) {
+                /* Aqui é por conta que está sendo feito uma nova operação,
+                 * com um resultado já processado anteriormente. */
+                operacao_pressionado = '/';
+                controleDeEstrutura();
+            }
+
+        } else if (botaoPressionado == botao_porcen) {
+
+             if (chave == 1) {
+                obterNum1(true);
+                operacao_pressionado = '%';
+                controleDeEstrutura();
+             } else if (chave == 2) {
+                 /* Aqui é por conta que está sendo feito uma nova operação,
+                  * com um resultado já processado anteriormente. */
+                 operacao_pressionado = '%';
+                 controleDeEstrutura();
+             }
+
+        } else if (botaoPressionado == botao_virg) {
+
+            virgula = true;
+
+        } else {
+
+            // Botão de AC
 
         }
 
     }
 
-    
+
     // Variáveis usadas para armazenar os números após a vírgula e antes
     static Integer num_temp = 0, num_virg_temp = 0;
     public static void obterNum1(boolean operador) {
 
-        if (operacao_pressionado != ',') {
+        if (!virgula) {
             // Se não foi digitado uma vírgula, então pegaremos a parte inteira.
 
             num_temp = num_temp * 10 + numero_pressionado;
             numero_pressionado = 0;
-            System.out.println("num_temp = " + num_temp);
-
         } else {
             /* Se pressionou para adicionar virgula, precisamos pegar os
                números após a virgula. */
 
             num_virg_temp = num_virg_temp * 10 + numero_pressionado;
             numero_pressionado = 0;
-            System.out.println("num_virg_temp = " + num_virg_temp);
 
         }
 
@@ -152,21 +318,41 @@ public class Processador extends PainelGrafico{
                então temos que converter os números após a virgula e antes da vírgula,
                para se colocar eles na variável num1. */
 
-            // Obtendo o número de dígitos na parte decimal
-            int numDigitosDecimal = String.valueOf(num_virg_temp).length();
+            if (num_virg_temp == 0 && !virgula) {
 
-            // Calculando o divisor
-            int divisor = (int) Math.pow(10, numDigitosDecimal);
+                // Testando para ver se foi pedido um número negativo.
+                if (struct.vet_opera[0] == '-') {
+                    num1 = ((num_temp.doubleValue()/10) * -1);
+                } else {
+                    num1 = (num_temp.doubleValue()/10);
+                }
 
-            // Combinando a parte inteira e a parte decimal
+            } else {
+                // Obtendo o número de dígitos na parte decimal
+                int numDigitosDecimal = String.valueOf(num_virg_temp).length();
 
-            num1 = (num_temp.doubleValue()/10) + ((double) num_virg_temp / divisor);
+                // Calculando o divisor
+                int divisor = (int) Math.pow(10, numDigitosDecimal);
+
+                // Testando para ver se foi pedido um número negativo.
+                if (struct.vet_opera[0] == '-') {
+                    // Combinando a parte inteira e a parte decimal
+                    num1 = (num_temp.doubleValue() + ((double) num_virg_temp / divisor)) * -1;
+                } else {
+                    // Combinando a parte inteira e a parte decimal
+                    num1 = num_temp.doubleValue() + ((double) num_virg_temp / divisor);
+                }
+
+            }
+
+            // Chamando controleDeEstrutura()
+            controleDeEstrutura();
 
             // limpando as variáveis que usamos para armazenar números temporários.
             num_virg_temp = 0;
             num_temp = 0;
+            virgula = false;
 
-            System.out.println("num1 após tudo = " + num1);
         }
 
     }
@@ -174,12 +360,11 @@ public class Processador extends PainelGrafico{
 
     public static void obterNum2(boolean operador) {
 
-        if (operacao_pressionado != ',') {
+        if (!virgula) {
             // Se não foi digitado uma vírgula, então pegaremos a parte inteira.
 
             num_temp = num_temp * 10 + numero_pressionado;
             numero_pressionado = 0;
-            System.out.println("num_temp = " + num_temp);
 
         } else {
             /* Se pressionou para adicionar virgula, precisamos pegar os
@@ -187,7 +372,6 @@ public class Processador extends PainelGrafico{
 
             num_virg_temp = num_virg_temp * 10 + numero_pressionado;
             numero_pressionado = 0;
-            System.out.println("num_virg_temp = " + num_virg_temp);
 
         }
 
@@ -198,22 +382,133 @@ public class Processador extends PainelGrafico{
                então temos que converter os números após a virgula e antes da vírgula,
                para se colocar eles na variável num1. */
 
-            // Obtendo o número de dígitos na parte decimal
-            int numDigitosDecimal = String.valueOf(num_virg_temp).length();
+            if (num_virg_temp == 0 && !virgula) {
 
-            // Calculando o divisor
-            int divisor = (int) Math.pow(10, numDigitosDecimal);
+                // Testando para ver se foi pedido um número negativo.
+                if (struct.vet_opera[3] == '-') {
+                    num2 = (num_temp.doubleValue()/10) * -1;
+                } else {
+                    num2 = (num_temp.doubleValue()/10);
+                }
 
-            // Combinando a parte inteira e a parte decimal
+            } else {
+                // Obtendo o número de dígitos na parte decimal
+                int numDigitosDecimal = String.valueOf(num_virg_temp).length();
 
-            num2 = (num_temp.doubleValue()/10) + ((double) num_virg_temp / divisor);
+                // Calculando o divisor
+                int divisor = (int) Math.pow(10, numDigitosDecimal);
+
+                // Testando para ver se foi pedido um número negativo.
+                if (struct.vet_opera[3] == '-') {
+                    num2 = (num_temp.doubleValue() + ((double) num_virg_temp / divisor)) * -1;
+                } else {
+                    // Combinando a parte inteira e a parte decimal
+                    num2 = num_temp.doubleValue() + ((double) num_virg_temp / divisor);
+                }
+
+            }
+
+            // Chamando controleDeEstrutura()
+            controleDeEstrutura();
 
             // limpando as variáveis que usamos para armazenar números temporários.
             num_virg_temp = 0;
             num_temp = 0;
+            virgula = false;
 
-            System.out.println("num2 após tudo = " + num2);
         }
+    }
+
+    // Instanciando um objeto da classe MinhaStruct.
+    static MinhaStruct struct = new MinhaStruct();
+
+    // Chave para navegar entre os indices, começa no 0 e termina no 4.
+    static int chave = 0;
+
+    public static void controleDeEstrutura () {
+
+        if (chave == 0 && operacao_pressionado == '-') {
+            struct.vet_opera[0] = operacao_pressionado;
+            System.out.println("ControleDeEstrutura [0] = " + struct.vet_opera[0]);
+            operacao_pressionado = 'n';
+            chave = 1;
+        } else if (chave == 0 && struct.vet_opera[0] == 'n') {
+            chave = 1;
+        } else if (chave == 1) {
+            struct.vet_num[1] = num1;
+            System.out.println("ControleDeEstrutura [1] = " + struct.vet_num[1]);
+            chave = 2;
+        } else if (chave == 2) {
+            struct.vet_opera[2] = operacao_pressionado;
+            System.out.println("ControleDeEstrutura [2] = " + struct.vet_opera[2]);
+            operacao_pressionado = 'n';
+
+            if (struct.vet_opera[2] == '%') {
+                controleDeOperacoes();
+            } else {
+                chave = 3;
+            }
+
+        } else if (chave == 3 && operacao_pressionado == '-') {
+            struct.vet_opera[3] = operacao_pressionado;
+            System.out.println("ControleDeEstrutura [3] = " + struct.vet_opera[3]);
+            chave = 4;
+        } else if (chave == 3) {
+            chave = 4;
+        } else if (chave == 4) {
+            struct.vet_num[4] = num2;
+            System.out.println("ControleDeEstrutura [4] = " + struct.vet_num[4]);
+            controleDeOperacoes(); // Atenção aqui
+        }
+
+    }
+
+    public static void controleDeOperacoes () {
+
+        if (struct.vet_opera[2] == '+') {
+            // Se deseja fazer uma soma.
+
+            double resul = struct.vet_num[1] + (struct.vet_num[4]);
+            resetaOpera(resul);
+
+        } else if (struct.vet_opera[2] == '-') {
+            // Se deseja fazer uma subtração.
+
+            double resul = struct.vet_num[1] - (struct.vet_num[4]);
+            resetaOpera(resul);
+        } else if (struct.vet_opera[2] == 'x') {
+            // Se deseja fazer uma multiplicação.
+
+            double resul = struct.vet_num[1] * (struct.vet_num[4]);
+            resetaOpera(resul);
+        } else if (struct.vet_opera[2] == '/') {
+            // Se deseja fazer uma divisão.
+
+            double resul = struct.vet_num[1] / (struct.vet_num[4]);
+            resetaOpera(resul);
+        } else if (struct.vet_opera[2] == '%') {
+            // Se deseja dividir por 100.
+
+            double resul = struct.vet_num[1] / 100;
+            resetaOpera(resul);
+        }
+    }
+
+    public static void resetaOpera(double resul) {
+
+        if (resul >= 0) {
+            struct.vet_opera[0] = 'n';
+        }
+
+        struct.vet_num[1] = resul;
+        struct.vet_num[4] = 0;
+        struct.vet_opera[2] = 'n';
+        struct.vet_opera[3] = 'n';
+
+        for (int i = 0; i < 5; i++) {
+            System.out.printf("Número: %.2f\tOperador %c\n", struct.vet_num[i], struct.vet_opera[i]);
+        }
+        chave = 2;
     }
 
 

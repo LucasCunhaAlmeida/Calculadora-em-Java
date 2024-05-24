@@ -1,15 +1,30 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 public class PainelGrafico extends JFrame{
 
     // ****** Objetos Globais. *****
 
-    protected JButton botaoPressionado, botao_igual, botao_soma, botao_subt,
-            botao_mult, botao_div, botao_0, botao_virg, botao_1, botao_2,
-            botao_3, botao_4, botao_5, botao_6, botao_7, botao_8, botao_9,
-            botao_ac, botao_porcen;
+    protected JButton botaoPressionado;
+    protected JButton botao_igual;
+    protected JButton botao_soma;
+    protected JButton botao_subt;
+    protected JButton botao_mult;
+    protected JButton botao_div;
+    protected JButton botao_0;
+    protected JButton botao_virg;
+    protected JButton botao_1;
+    protected JButton botao_2;
+    protected JButton botao_3;
+    protected JButton botao_4;
+    protected JButton botao_5;
+    protected JButton botao_6;
+    protected JButton botao_7;
+    protected JButton botao_8;
+    protected JButton botao_9;
+    protected JButton botao_ac;
+    protected JButton botao_porcen;
+
     protected JTextField caixa_operacoes;
 
     // ***** Construtor *****
@@ -41,11 +56,13 @@ public class PainelGrafico extends JFrame{
 
     // Este método serve para mudar o Icone do aplicativo que aparece na janela
     protected void iconeJanela() {
-        ImageIcon img = new ImageIcon("C:\\Users\\lucas\\OneDrive\\" +
-                "Documentos\\Calculadora gráfica com java\\main\\src\\resources\\Icone Calc.png");
+        ImageIcon img = new ImageIcon("C:\\Users\\lucas\\OneDrive\\Documentos\\" +
+                "Calculadora gráfica com java\\out\\production\\Calculadora gráfica com java\\" +
+                "\\resources\\Icone Calculadora em Java.png");
 
         this.setIconImage(img.getImage());
     }
+
     // Este método serve para criar a janela da calculadora.
     protected void gerarTela() {
         // ***** Gerando a janela do aplicativo. *****
@@ -53,7 +70,7 @@ public class PainelGrafico extends JFrame{
         // Tamanho da tela.
         setSize(330,535);
         // Entitulando
-        setTitle("Calculadora Java");
+        setTitle("Calculadora");
         // Método para quando fechar a janela encerrar o programa.
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Método para não deixar maximizar a tela
@@ -340,6 +357,7 @@ public class PainelGrafico extends JFrame{
         // Adicionando ele na tela.
         add(botao_9);
     }
+
     protected void botaoAC() {
         // ***** Gerando um botão. *****
 
@@ -373,7 +391,8 @@ public class PainelGrafico extends JFrame{
         // Adicionando ele na tela.
         add(botao_porcen);
     }
-    // Este método serve para adicionar a caixa de texto que mostra as operações
+    // Este método permite adicionar a caixa de texto que mostra as operações.
+
     protected void caixaTextoOperacoes() {
         // ***** Gerando a caixa de texto das operações. *****
 
