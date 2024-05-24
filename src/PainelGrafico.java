@@ -25,7 +25,7 @@ public class PainelGrafico extends JFrame{
     protected JButton botao_ac;
     protected JButton botao_porcen;
 
-    protected JTextField caixa_operacoes;
+    protected static JTextField caixa_operacoes;
 
     // ***** Construtor *****
     public PainelGrafico(){
@@ -401,7 +401,9 @@ public class PainelGrafico extends JFrame{
         // Coordenadas dessa caixa de texto.
         caixa_operacoes.setBounds(10,50,300,100);
         // Fonte e tamanho da letra.
-        caixa_operacoes.setFont(new Font("Arial",Font.ITALIC,30));
+        caixa_operacoes.setFont(new Font("Arial",Font.ITALIC,45));
+        // Cor do texto
+        caixa_operacoes.setForeground(Color.WHITE); // Texto em branco
         // Cor de fundo
         caixa_operacoes.setBackground(new Color(0x2A2626));
         // Método para o usuário não interagir com a caixa de texto.

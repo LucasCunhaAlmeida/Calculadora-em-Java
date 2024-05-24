@@ -4,9 +4,7 @@ import java.awt.event.ActionEvent;
 public class Processador extends PainelGrafico{
 
     public Processador () {
-
         instanciaAcaoBotoes ();
-
     }
 
     static Integer numero_pressionado = 0;
@@ -284,14 +282,19 @@ public class Processador extends PainelGrafico{
 
             virgula = true;
 
-        } else {
+            if (chave == 1 || chave == 4) {
+                atualizarCaixaOp(",");
+            }
+
+        } else if (botaoPressionado == botao_ac){
 
             // Botão de AC
-
+            operacao_pressionado = 'A';
+            System.out.println("AC?");
+            controleDeOperacoes(); // Atenção aqui
         }
 
     }
-
 
     // Variáveis usadas para armazenar os números após a vírgula e antes
     static Integer num_temp = 0, num_virg_temp = 0;
@@ -301,12 +304,19 @@ public class Processador extends PainelGrafico{
             // Se não foi digitado uma vírgula, então pegaremos a parte inteira.
 
             num_temp = num_temp * 10 + numero_pressionado;
+            if (!operador) {
+                atualizarCaixaOp(String.valueOf(numero_pressionado));
+            }
             numero_pressionado = 0;
+
         } else {
             /* Se pressionou para adicionar virgula, precisamos pegar os
                números após a virgula. */
 
             num_virg_temp = num_virg_temp * 10 + numero_pressionado;
+            if (!operador) {
+                atualizarCaixaOp(String.valueOf(numero_pressionado));
+            }
             numero_pressionado = 0;
 
         }
@@ -364,6 +374,9 @@ public class Processador extends PainelGrafico{
             // Se não foi digitado uma vírgula, então pegaremos a parte inteira.
 
             num_temp = num_temp * 10 + numero_pressionado;
+            if (!operador) {
+                atualizarCaixaOp(String.valueOf(numero_pressionado));
+            }
             numero_pressionado = 0;
 
         } else {
@@ -371,6 +384,9 @@ public class Processador extends PainelGrafico{
                números após a virgula. */
 
             num_virg_temp = num_virg_temp * 10 + numero_pressionado;
+            if (!operador) {
+                atualizarCaixaOp(String.valueOf(numero_pressionado));
+            }
             numero_pressionado = 0;
 
         }
@@ -379,7 +395,7 @@ public class Processador extends PainelGrafico{
         if (operador) {
 
             /* Se chegou aqui é por conta que foi pressionado algum operador,
-               então temos que converter os números após a virgula e antes da vírgula,
+               então temos que converter os números após a vírgula e antes da vírgula,
                para se colocar eles na variável num1. */
 
             if (num_virg_temp == 0 && !virgula) {
@@ -429,18 +445,17 @@ public class Processador extends PainelGrafico{
 
         if (chave == 0 && operacao_pressionado == '-') {
             struct.vet_opera[0] = operacao_pressionado;
-            System.out.println("ControleDeEstrutura [0] = " + struct.vet_opera[0]);
+            atualizarCaixaOp(String.valueOf(struct.vet_opera[0]));
             operacao_pressionado = 'n';
             chave = 1;
         } else if (chave == 0 && struct.vet_opera[0] == 'n') {
             chave = 1;
         } else if (chave == 1) {
             struct.vet_num[1] = num1;
-            System.out.println("ControleDeEstrutura [1] = " + struct.vet_num[1]);
             chave = 2;
         } else if (chave == 2) {
             struct.vet_opera[2] = operacao_pressionado;
-            System.out.println("ControleDeEstrutura [2] = " + struct.vet_opera[2]);
+            atualizarCaixaOp(String.valueOf(struct.vet_opera[2]));
             operacao_pressionado = 'n';
 
             if (struct.vet_opera[2] == '%') {
@@ -451,46 +466,111 @@ public class Processador extends PainelGrafico{
 
         } else if (chave == 3 && operacao_pressionado == '-') {
             struct.vet_opera[3] = operacao_pressionado;
-            System.out.println("ControleDeEstrutura [3] = " + struct.vet_opera[3]);
+            atualizarCaixaOp(String.valueOf(struct.vet_opera[3]));
             chave = 4;
         } else if (chave == 3) {
             chave = 4;
         } else if (chave == 4) {
             struct.vet_num[4] = num2;
-            System.out.println("ControleDeEstrutura [4] = " + struct.vet_num[4]);
-            controleDeOperacoes(); // Atenção aqui
+            controleDeOperacoes();
         }
 
     }
 
     public static void controleDeOperacoes () {
 
-        if (struct.vet_opera[2] == '+') {
+        if (operacao_pressionado == 'A'){
+            // AC, limpar tudo.
+            caixa_operacoes.setText(null);
+            chave = 0;
+            num1 = 0;
+            num2 = 0;
+            numero_pressionado = 0;
+            num_temp = 0;
+
+            for (int i = 0; i < struct.vet_num.length; i++) {
+                struct.vet_num[i] = 0;
+
+                if (i != 1 && i != 4) {
+                    struct.vet_opera[i] = 'n';
+                }
+
+            }
+
+        } else if (struct.vet_opera[2] == '+') {
             // Se deseja fazer uma soma.
+
+            caixa_operacoes.setText(null);
 
             double resul = struct.vet_num[1] + (struct.vet_num[4]);
             resetaOpera(resul);
 
+            if (ehInteiro(resul)) {
+                int resul_int = (int)resul;
+                atualizarCaixaOp(String.valueOf(resul_int));
+            } else {
+                atualizarCaixaOp(String.valueOf(resul));
+            }
+
         } else if (struct.vet_opera[2] == '-') {
             // Se deseja fazer uma subtração.
 
+            caixa_operacoes.setText(null);
+
             double resul = struct.vet_num[1] - (struct.vet_num[4]);
             resetaOpera(resul);
+
+            if (ehInteiro(resul)) {
+                int resul_int = (int)resul;
+                atualizarCaixaOp(String.valueOf(resul_int));
+            } else {
+                atualizarCaixaOp(String.valueOf(resul));
+            }
+
         } else if (struct.vet_opera[2] == 'x') {
             // Se deseja fazer uma multiplicação.
 
+            caixa_operacoes.setText(null);
+
             double resul = struct.vet_num[1] * (struct.vet_num[4]);
             resetaOpera(resul);
+
+            if (ehInteiro(resul)) {
+                int resul_int = (int)resul;
+                atualizarCaixaOp(String.valueOf(resul_int));
+            } else {
+                atualizarCaixaOp(String.valueOf(resul));
+            }
+
         } else if (struct.vet_opera[2] == '/') {
             // Se deseja fazer uma divisão.
 
+            caixa_operacoes.setText(null);
+
             double resul = struct.vet_num[1] / (struct.vet_num[4]);
             resetaOpera(resul);
+
+            if (ehInteiro(resul)) {
+                int resul_int = (int)resul;
+                atualizarCaixaOp(String.valueOf(resul_int));
+            } else {
+                atualizarCaixaOp(String.valueOf(resul));
+            }
+
         } else if (struct.vet_opera[2] == '%') {
             // Se deseja dividir por 100.
 
+            caixa_operacoes.setText(null);
+
             double resul = struct.vet_num[1] / 100;
             resetaOpera(resul);
+
+            if (ehInteiro(resul)) {
+                int resul_int = (int)resul;
+                atualizarCaixaOp(String.valueOf(resul_int));
+            } else {
+                atualizarCaixaOp(String.valueOf(resul));
+            }
         }
     }
 
@@ -505,13 +585,15 @@ public class Processador extends PainelGrafico{
         struct.vet_opera[2] = 'n';
         struct.vet_opera[3] = 'n';
 
-        for (int i = 0; i < 5; i++) {
-            System.out.printf("Número: %.2f\tOperador %c\n", struct.vet_num[i], struct.vet_opera[i]);
-        }
         chave = 2;
     }
 
+    public static void atualizarCaixaOp(String texto) {
 
+        // Obtém o texto atual na caixa e adiciona o novo texto.
+        String textoAtual = caixa_operacoes.getText();
+        caixa_operacoes.setText(textoAtual + texto);
+    }
     public void instanciaAcaoBotoes () {
 
         botao_igual.addActionListener(this::lerOpcaoBotao);
@@ -533,5 +615,10 @@ public class Processador extends PainelGrafico{
         botao_ac.addActionListener(this::lerOpcaoBotao);
         botao_porcen.addActionListener(this::lerOpcaoBotao);
 
+    }
+
+
+    public static boolean ehInteiro(double num) {
+        return num == Math.floor(num);
     }
 }
