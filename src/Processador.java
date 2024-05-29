@@ -8,18 +8,27 @@ public class Processador extends PainelGrafico{
         instanciaAcaoBotoes ();
     }
 
-    // Variaveis usadas globalmente ao longo da classe.
+    // ***** Variaveis usadas globalmente ao longo da classe *****.
+
+    // Armazena o número pressionado em algum dos botões.
     static Integer numero_pressionado = 0;
+
+    // Armazena os números que serão colocados na posição 1 e 4 do vetor.
     static double num1 = 0, num2 = 0;
+
+    // Armazena o símbolo pressionado em algum dos botões.
     static char operacao_pressionado = 'n';
+
+    // Para saber se no momento estamos usando virgula para digitar os números.
     static boolean virgula = false;
+
     // Chave para navegar entre os indices, começa no 0 e termina no 4.
     static int chave = 0;
 
     // Armazenar números temporarios (usados nos métodos obterNum1 e obterNum2).
     static Integer num_temp = 0, num_virg_temp = 0;
 
-    // Métodos especiais das variaveis a cima.
+    // ***** Métodos especiais das variaveis a cima. *****
 
     public static Integer getNumero_pressionado() {
         return numero_pressionado;
@@ -367,27 +376,36 @@ public class Processador extends PainelGrafico{
 
     }
 
-    // Variáveis usadas para armazenar os números após a vírgula e antes
-
+    /**
+     * Este método faz todo o processo de pegar os números pressionados,
+     * ao final converte eles para um só número.
+     */
     public static void obterNum1(boolean operador) {
 
         if (!virgula) {
             // Se não foi digitado uma vírgula, então pegaremos a parte inteira.
 
             setNum_temp(num_temp * 10 + numero_pressionado);
+
             if (!operador) {
+                // Se ainda não foi digitado um operador então atualizamos a caixa de operações.
                 atualizarCaixaOp(String.valueOf(numero_pressionado));
             }
+            // Coloca 0 no número pressionado para não dar erros futuramente.
             setNumero_pressionado(0);
 
         } else {
-            /* Se pressionou para adicionar virgula, precisamos pegar os
-               números após a virgula. */
+            /**
+             *  Se pressionou para adicionar virgula, precisamos pegar os
+             * números após a virgula.
+             */
 
             setNum_virg_temp(num_virg_temp * 10 + numero_pressionado);
             if (!operador) {
+                // Se ainda não foi digitado um operador então atualizamos a caixa de operações.
                 atualizarCaixaOp(String.valueOf(numero_pressionado));
             }
+            // Coloca 0 no número pressionado para não dar erros futuramente.
             setNumero_pressionado(0);
 
         }
@@ -395,21 +413,24 @@ public class Processador extends PainelGrafico{
         // Agora testando se foi passado um operador em vez de um número.
         if (operador) {
 
-            /* Se chegou aqui é por conta que foi pressionado algum operador,
-               então temos que converter os números após a virgula e antes da vírgula,
-               para se colocar eles na variável num1. */
+            /** Se chegou aqui é por conta que foi pressionado algum operador,
+              * então temos que converter os números após a vírgula e antes da vírgula,
+              * para se colocar eles na variável num1.
+            */
 
             if (getNum_virg_temp() == 0 && !virgula) {
 
                 // Testando para ver se foi pedido um número negativo.
                 if (struct.vet_opera[0] == '-') {
+                    // Foi negativo.
                     setNum1(((num_temp.doubleValue()/10) * -1));
                 } else {
+                    // Não foi negativo.
                     setNum1((num_temp.doubleValue()/10));
                 }
 
             } else {
-                // Obtendo o número de dígitos na parte decimal
+                // Obtendo o número de dígitos na parte decimal.
                 int numDigitosDecimal = String.valueOf(num_virg_temp).length();
 
                 // Calculando o divisor
@@ -417,28 +438,32 @@ public class Processador extends PainelGrafico{
 
                 // Testando para ver se foi pedido um número negativo.
                 if (struct.vet_opera[0] == '-') {
-                    // Combinando a parte inteira e a parte decimal
+                    // Combinando a parte inteira e a parte decimal (negativando).
                     setNum1((num_temp.doubleValue() + ((double) num_virg_temp / divisor)) * -1);
                 } else {
-                    // Combinando a parte inteira e a parte decimal
+                    // Combinando a parte inteira e a parte decimal.
                     setNum1(num_temp.doubleValue() + ((double) num_virg_temp / divisor));
                 }
 
             }
 
-            // Chamando controleDeEstrutura()
+            // Chamando controleDeEstrutura() para guardar o num1 e colocar a chave para 2.
             controleDeEstrutura();
 
-            // limpando as variáveis que usamos para armazenar números temporários.
+            // Limpando as variáveis que usamos para armazenar números temporários.
             setNum_virg_temp(0);
             setNum_temp(0);
+            // Coloca a vírgula para false para não dar problemas futuros.
             virgula = false;
 
         }
 
     }
 
-
+    /**
+     * Este método faz todo o processo de pegar os números pressionados,
+     * ao final converte eles para um só número, assim como obterNum1.
+     */
     public static void obterNum2(boolean operador) {
 
         if (!virgula) {
@@ -446,18 +471,24 @@ public class Processador extends PainelGrafico{
 
             setNum_temp(num_temp * 10 + numero_pressionado);
             if (!operador) {
+                // Se ainda não foi digitado um operador então atualizamos a caixa de operações.
                 atualizarCaixaOp(String.valueOf(numero_pressionado));
             }
+            // Coloca 0 no número pressionado para não dar erros futuramente.
             setNumero_pressionado(0);
 
         } else {
-            /* Se pressionou para adicionar virgula, precisamos pegar os
-               números após a virgula. */
+            /**
+             *  Se pressionou para adicionar virgula, precisamos pegar os
+             * números após a virgula.
+             */
 
             setNum_virg_temp(num_virg_temp * 10 + numero_pressionado);
             if (!operador) {
+                // Se ainda não foi digitado um operador então atualizamos a caixa de operações.
                 atualizarCaixaOp(String.valueOf(numero_pressionado));
             }
+            // Coloca 0 no número pressionado para não dar erros futuramente.
             setNumero_pressionado(0);
 
         }
@@ -465,16 +496,19 @@ public class Processador extends PainelGrafico{
         // Agora testando se foi passado um operador em vez de um número.
         if (operador) {
 
-            /* Se chegou aqui é por conta que foi pressionado algum operador,
-               então temos que converter os números após a vírgula e antes da vírgula,
-               para se colocar eles na variável num1. */
+            /** Se chegou aqui é por conta que foi pressionado algum operador,
+              * então temos que converter os números após a vírgula e antes da vírgula,
+              * para se colocar eles na variável num1.
+             */
 
             if (getNum_virg_temp() == 0 && !virgula) {
 
                 // Testando para ver se foi pedido um número negativo.
                 if (struct.vet_opera[3] == '-') {
+                    // Foi negativo.
                     setNum2((num_temp.doubleValue()/10) * -1);
                 } else {
+                    // Não foi negativo.
                     setNum2((num_temp.doubleValue()/10));
                 }
 
@@ -495,12 +529,13 @@ public class Processador extends PainelGrafico{
 
             }
 
-            // Chamando controleDeEstrutura()
+            // Chamando controleDeEstrutura() para guardar o num2 e colocar a chave para 4.
             controleDeEstrutura();
 
             // limpando as variáveis que usamos para armazenar números temporários.
             setNum_virg_temp(0);
             setNum_temp(0);
+            // Coloca a vírgula para false para não dar problemas futuros.
             virgula = false;
 
         }
@@ -509,38 +544,59 @@ public class Processador extends PainelGrafico{
     // Instanciando um objeto da classe MinhaStruct.
     static MinhaStruct struct = new MinhaStruct();
 
-
+    /**
+     * Este método vai controlar as duas estrutras de matrizes,
+     * estruturadas na classe MinhaStruct. Colocando os números
+     * e operadores nos lugares corretos.
+     */
     public static void controleDeEstrutura () {
 
         if (getChave() == 0 && getOperacao_pressionado() == '-') {
+            // Aqui a chave está na primeira posição e o usuario pressionou o símbolo negativo.
             struct.vet_opera[0] = getOperacao_pressionado();
+            // Atualizando a caixa de operações com símbolo negativo.
             atualizarCaixaOp(String.valueOf(struct.vet_opera[0]));
+            // Para não dar problemas no futuro.
             setOperacao_pressionado('n');
+            // Coloca a chave valendo 1 para poder digitar um número.
             setChave(1);
         } else if (getChave() == 0 && struct.vet_opera[0] == 'n') {
+            // Aqui o usuario não quis um número negativo, então segue para o número.
             setChave(1);
         } else if (getChave() == 1) {
+            // Aqui colocamos o que está no num1 para a primeira posição do vetor de números.
             struct.vet_num[1] = getNum1();
+            // Coloca a chave para 2 para pegar o operador.
             setChave(2);
         } else if (getChave() == 2) {
+            // Aqui se escolheu um operador.
             struct.vet_opera[2] = operacao_pressionado;
+            // Atuzaliza a caixa de texto.
             atualizarCaixaOp(String.valueOf(struct.vet_opera[2]));
+            // Para não dar problemas no futuro.
             setOperacao_pressionado('n');
-
+            // Verifica se foi o %, se foi se chama a controleDeOperações.
             if (struct.vet_opera[2] == '%') {
                 controleDeOperacoes();
             } else {
+                // Senão só coloca a chave para 3.
                 setChave(3);
             }
 
         } else if (getChave() == 3 && getOperacao_pressionado() == '-') {
+            // Aqui o usuario quis um número negativo para o num2.
             struct.vet_opera[3] = getOperacao_pressionado();
+            // Atualiza a caixa de operações.
             atualizarCaixaOp(String.valueOf(struct.vet_opera[3]));
+            // Coloca a chave para 4 (ultima posição possivel).
             setChave(4);
         } else if (getChave() == 3) {
+            // O usuario não quis um número negativo para num2.
             setChave(4);
         } else if (getChave() == 4) {
+            // Chegamos a ultima posição do vetor.
             struct.vet_num[4] = getNum2();
+            // Se chama esse método para processar toda a operação matemática.
             controleDeOperacoes();
         }
 
@@ -691,5 +747,5 @@ public class Processador extends PainelGrafico{
     public static boolean ehInteiro(double num) {
         return num == Math.floor(num);
     }
-    
+
 }

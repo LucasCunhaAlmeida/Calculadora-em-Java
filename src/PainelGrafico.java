@@ -54,11 +54,9 @@ public class PainelGrafico extends JFrame{
         setVisible(true);
     }
 
-    // Este método serve para mudar o Icone do aplicativo que aparece na janela
+    // Este método serve para mudar o Icone do aplicativo que aparece na janela.
     protected void iconeJanela() {
-        ImageIcon img = new ImageIcon("C:\\Users\\lucas\\OneDrive\\Documentos\\" +
-                "Calculadora gráfica com java\\out\\production\\Calculadora gráfica com java\\" +
-                "\\resources\\Icone Calculadora em Java.png");
+        ImageIcon img = new ImageIcon("C:\\Users\\lucas\\OneDrive\\Documentos\\Calculadora gráfica com java\\main\\src\\resources\\Icone Calculadora em Java.jpg");
 
         this.setIconImage(img.getImage());
     }
