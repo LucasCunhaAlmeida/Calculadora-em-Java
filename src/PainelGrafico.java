@@ -63,7 +63,7 @@ public class PainelGrafico extends JFrame{
         this.setIconImage(img.getImage());
     }
 
-    // Este método serve para criar a janela da calculadora.
+    // Este método permite criar a janela da calculadora.
     protected void gerarTela() {
         // ***** Gerando a janela do aplicativo. *****
 
@@ -84,7 +84,7 @@ public class PainelGrafico extends JFrame{
 
     }
 
-    // Este método serve para adicionar o botão de igualdade.
+    // Este método permite adicionar o botão de igualdade.
     protected void botaoIgualdade() {
         // ***** Gerando um botão. *****
 
@@ -92,7 +92,7 @@ public class PainelGrafico extends JFrame{
         botao_igual = new JButton("=");
         // Coordenadas para adicionar na tela.
         botao_igual.setBounds(245,442,65,50);
-        // Nome da fonte e tamanho da letra através de uma classe.
+        // Nome da fonte e tamanho da letra por uma classe.
         botao_igual.setFont(new Font("Arial",Font.PLAIN,40));
         // Cor dos characteres do botão.
         botao_igual.setForeground(new Color(255, 255, 255));
@@ -103,6 +103,7 @@ public class PainelGrafico extends JFrame{
 
     }
 
+    // Este método permite adicionar o botão de soma.
     protected void botaoSoma() {
         // ***** Gerando um botão. *****
 
@@ -120,6 +121,7 @@ public class PainelGrafico extends JFrame{
         add(botao_soma);
     }
 
+    // Este método permite adicionar o botão de subtração.
     protected void botaoSubt() {
         // ***** Gerando um botão. *****
 
@@ -137,6 +139,7 @@ public class PainelGrafico extends JFrame{
         add(botao_subt);
     }
 
+    // Este método permite adicionar o botão de multiplicação.
     protected void botaoMult() {
         // ***** Gerando um botão. *****
 
@@ -154,6 +157,7 @@ public class PainelGrafico extends JFrame{
         add(botao_mult);
     }
 
+    // Este método permite adicionar o botão de divisão.
     protected void botaoDiv() {
         // ***** Gerando um botão. *****
 
@@ -171,6 +175,7 @@ public class PainelGrafico extends JFrame{
         add(botao_div);
     }
 
+    // Este método permite adicionar o botão de número 0.
     protected void botaoNum0() {
         // ***** Gerando um botão. *****
 
@@ -188,6 +193,7 @@ public class PainelGrafico extends JFrame{
         add(botao_0);
     }
 
+    // Este método permite adicionar o botão de vírgula.
     protected void botaoVirgula() {
         // ***** Gerando um botão. *****
 
@@ -205,6 +211,7 @@ public class PainelGrafico extends JFrame{
         add(botao_virg);
     }
 
+    // Este método permite adicionar o botão de número 1.
     protected void botaoNum1() {
         // ***** Gerando um botão. *****
 
@@ -222,6 +229,7 @@ public class PainelGrafico extends JFrame{
         add(botao_1);
     }
 
+    // Este método permite adicionar o botão de número 2.
     protected void botaoNum2() {
         // ***** Gerando um botão. *****
 
@@ -239,6 +247,7 @@ public class PainelGrafico extends JFrame{
         add(botao_2);
     }
 
+    // Este método permite adicionar o botão de número 3.
     protected void botaoNum3() {
         // ***** Gerando um botão. *****
 
@@ -256,6 +265,7 @@ public class PainelGrafico extends JFrame{
         add(botao_3);
     }
 
+    // Este método permite adicionar o botão de número 4.
     protected void botaoNum4() {
         // ***** Gerando um botão. *****
 
@@ -273,6 +283,7 @@ public class PainelGrafico extends JFrame{
         add(botao_4);
     }
 
+    // Este método permite adicionar o botão de número 5.
     protected void botaoNum5() {
         // ***** Gerando um botão. *****
 
@@ -290,6 +301,7 @@ public class PainelGrafico extends JFrame{
         add(botao_5);
     }
 
+    // Este método permite adicionar o botão de número 6.
     protected void botaoNum6() {
         // ***** Gerando um botão. *****
 
@@ -307,6 +319,7 @@ public class PainelGrafico extends JFrame{
         add(botao_6);
     }
 
+    // Este método permite adicionar o botão de número 7.
     protected void botaoNum7() {
         // ***** Gerando um botão. *****
 
@@ -324,6 +337,7 @@ public class PainelGrafico extends JFrame{
         add(botao_7);
     }
 
+    // Este método permite adicionar o botão de número 8.
     protected void botaoNum8() {
         // ***** Gerando um botão. *****
 
@@ -341,6 +355,7 @@ public class PainelGrafico extends JFrame{
         add(botao_8);
     }
 
+    // Este método permite adicionar o botão de número 9.
     protected void botaoNum9() {
         // ***** Gerando um botão. *****
 
@@ -358,6 +373,7 @@ public class PainelGrafico extends JFrame{
         add(botao_9);
     }
 
+    // Este método permite adicionar o botão de AC (limpar).
     protected void botaoAC() {
         // ***** Gerando um botão. *****
 
@@ -375,6 +391,7 @@ public class PainelGrafico extends JFrame{
         add(botao_ac);
     }
 
+    // Este método permite adicionar o botão de porcentagem.
     protected void botaoPorcen() {
         // ***** Gerando um botão. *****
 
@@ -391,8 +408,8 @@ public class PainelGrafico extends JFrame{
         // Adicionando ele na tela.
         add(botao_porcen);
     }
-    // Este método permite adicionar a caixa de texto que mostra as operações.
 
+    // Este método permite adicionar a caixa de texto que mostra as operações.
     protected void caixaTextoOperacoes() {
         // ***** Gerando a caixa de texto das operações. *****
 

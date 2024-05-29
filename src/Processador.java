@@ -3,15 +3,87 @@ import java.awt.event.ActionEvent;
 
 public class Processador extends PainelGrafico{
 
+    // ***** Construtor *****
     public Processador () {
         instanciaAcaoBotoes ();
     }
 
+    // Variaveis usadas globalmente ao longo da classe.
     static Integer numero_pressionado = 0;
-    static double num1 = 0;
-    static double num2 = 0;
+    static double num1 = 0, num2 = 0;
     static char operacao_pressionado = 'n';
     static boolean virgula = false;
+    // Chave para navegar entre os indices, começa no 0 e termina no 4.
+    static int chave = 0;
+
+    // Armazenar números temporarios (usados nos métodos obterNum1 e obterNum2).
+    static Integer num_temp = 0, num_virg_temp = 0;
+
+    // Métodos especiais das variaveis a cima.
+
+    public static Integer getNumero_pressionado() {
+        return numero_pressionado;
+    }
+
+    public static void setNumero_pressionado(Integer numero_pressionado) {
+        Processador.numero_pressionado = numero_pressionado;
+    }
+
+    public static double getNum1() {
+        return num1;
+    }
+
+    public static void setNum1(double num1) {
+        Processador.num1 = num1;
+    }
+
+    public static double getNum2() {
+        return num2;
+    }
+
+    public static void setNum2(double num2) {
+        Processador.num2 = num2;
+    }
+
+    public static char getOperacao_pressionado() {
+        return operacao_pressionado;
+    }
+
+    public static void setOperacao_pressionado(char operacao_pressionado) {
+        Processador.operacao_pressionado = operacao_pressionado;
+    }
+
+    public static boolean isVirgula() {
+        return virgula;
+    }
+
+    public static void setVirgula(boolean virgula) {
+        Processador.virgula = virgula;
+    }
+
+    public static int getChave() {
+        return chave;
+    }
+
+    public static void setChave(int chave) {
+        Processador.chave = chave;
+    }
+
+    public static Integer getNum_temp() {
+        return num_temp;
+    }
+
+    public static void setNum_temp(Integer num_temp) {
+        Processador.num_temp = num_temp;
+    }
+
+    public static Integer getNum_virg_temp() {
+        return num_virg_temp;
+    }
+
+    public static void setNum_virg_temp(Integer num_virg_temp) {
+        Processador.num_virg_temp = num_virg_temp;
+    }
 
     public void lerOpcaoBotao(ActionEvent e) {
 
@@ -19,188 +91,188 @@ public class Processador extends PainelGrafico{
 
         if (botaoPressionado == botao_0) {
 
-            if (chave == 0) {
+            if (getChave() == 0) {
                 controleDeEstrutura();
-                numero_pressionado = 0;
+                setNumero_pressionado(0);
                 obterNum1(false);
-            } else if (chave == 1) {
-                numero_pressionado = 0;
+            } else if (getChave() == 1) {
+                setNumero_pressionado(0);
                 obterNum1(false);
-            } else if (chave == 3) {
+            } else if (getChave() == 3) {
                 controleDeEstrutura();
-                numero_pressionado = 0;
+                setNumero_pressionado(0);
                 obterNum2(false);
-            } else if (chave == 4) {
-                numero_pressionado = 0;
+            } else if (getChave() == 4) {
+                setNumero_pressionado(0);
                 obterNum2(false);
             }
 
         } else if (botaoPressionado == botao_1) {
 
-            if (chave == 0) {
+            if (getChave() == 0) {
                 controleDeEstrutura();
-                numero_pressionado = 1;
+                setNumero_pressionado(1);
                 obterNum1(false);
-            } else if (chave == 1) {
-                numero_pressionado = 1;
+            } else if (getChave() == 1) {
+                setNumero_pressionado(1);
                 obterNum1(false);
-            } else if (chave == 3) {
+            } else if (getChave() == 3) {
                 controleDeEstrutura();
-                numero_pressionado = 1;
+                setNumero_pressionado(1);
                 obterNum2(false);
-            } else if (chave == 4) {
-                numero_pressionado = 1;
+            } else if (getChave() == 4) {
+                setNumero_pressionado(1);
                 obterNum2(false);
             }
 
         } else if (botaoPressionado == botao_2) {
 
-            if (chave == 0) {
+            if (getChave() == 0) {
                 controleDeEstrutura();
-                numero_pressionado = 2;
+                setNumero_pressionado(2);
                 obterNum1(false);
-            } else if (chave == 1) {
-                numero_pressionado = 2;
+            } else if (getChave() == 1) {
+                setNumero_pressionado(2);
                 obterNum1(false);
-            } else if (chave == 3) {
+            } else if (getChave() == 3) {
                 controleDeEstrutura();
-                numero_pressionado = 2;
+                setNumero_pressionado(2);
                 obterNum2(false);
-            } else if (chave == 4) {
-                numero_pressionado = 2;
+            } else if (getChave() == 4) {
+                setNumero_pressionado(2);
                 obterNum2(false);
             }
 
         } else if (botaoPressionado == botao_3) {
 
-            if (chave == 0) {
+            if (getChave() == 0) {
                 controleDeEstrutura();
-                numero_pressionado = 3;
+                setNumero_pressionado(3);
                 obterNum1(false);
-            } else if (chave == 1) {
-                numero_pressionado = 3;
+            } else if (getChave() == 1) {
+                setNumero_pressionado(3);
                 obterNum1(false);
-            } else if (chave == 3) {
+            } else if (getChave() == 3) {
                 controleDeEstrutura();
-                numero_pressionado = 3;
+                setNumero_pressionado(3);
                 obterNum2(false);
-            } else if (chave == 4) {
-                numero_pressionado = 3;
+            } else if (getChave() == 4) {
+                setNumero_pressionado(3);
                 obterNum2(false);
             }
 
         } else if (botaoPressionado == botao_4) {
 
-            if (chave == 0) {
+            if (getChave() == 0) {
                 controleDeEstrutura();
-                numero_pressionado = 4;
+                setNumero_pressionado(4);
                 obterNum1(false);
-            } else if (chave == 1) {
-                numero_pressionado = 4;
+            } else if (getChave() == 1) {
+                setNumero_pressionado(4);
                 obterNum1(false);
-            } else if (chave == 3) {
+            } else if (getChave() == 3) {
                 controleDeEstrutura();
-                numero_pressionado = 4;
+                setNumero_pressionado(4);
                 obterNum2(false);
-            } else if (chave == 4) {
-                numero_pressionado = 4;
+            } else if (getChave() == 4) {
+                setNumero_pressionado(4);
                 obterNum2(false);
             }
 
         } else if (botaoPressionado == botao_5) {
 
-            if (chave == 0) {
+            if (getChave() == 0) {
                 controleDeEstrutura();
-                numero_pressionado = 5;
+                setNumero_pressionado(5);
                 obterNum1(false);
-            } else if (chave == 1) {
-                numero_pressionado = 5;
+            } else if (getChave() == 1) {
+                setNumero_pressionado(5);
                 obterNum1(false);
-            } else if (chave == 3) {
+            } else if (getChave() == 3) {
                 controleDeEstrutura();
-                numero_pressionado = 5;
+                setNumero_pressionado(5);
                 obterNum2(false);
-            } else if (chave == 4) {
-                numero_pressionado = 5;
+            } else if (getChave() == 4) {
+                setNumero_pressionado(5);
                 obterNum2(false);
             }
 
         } else if (botaoPressionado == botao_6) {
 
-            if (chave == 0) {
+            if (getChave() == 0) {
                 controleDeEstrutura();
-                numero_pressionado = 6;
+                setNumero_pressionado(6);
                 obterNum1(false);
-            } else if (chave == 1) {
-                numero_pressionado = 6;
+            } else if (getChave() == 1) {
+                setNumero_pressionado(6);
                 obterNum1(false);
-            } else if (chave == 3) {
+            } else if (getChave() == 3) {
                 controleDeEstrutura();
-                numero_pressionado = 6;
+                setNumero_pressionado(6);
                 obterNum2(false);
-            } else if (chave == 4) {
-                numero_pressionado = 6;
+            } else if (getChave() == 4) {
+                setNumero_pressionado(6);
                 obterNum2(false);
             }
 
         } else if (botaoPressionado == botao_7) {
 
-            if (chave == 0) {
+            if (getChave() == 0) {
                 controleDeEstrutura();
-                numero_pressionado = 7;
+                setNumero_pressionado(7);
                 obterNum1(false);
-            } else if (chave == 1) {
-                numero_pressionado = 7;
+            } else if (getChave() == 1) {
+                setNumero_pressionado(7);
                 obterNum1(false);
-            } else if (chave == 3) {
+            } else if (getChave() == 3) {
                 controleDeEstrutura();
-                numero_pressionado = 7;
+                setNumero_pressionado(7);
                 obterNum2(false);
-            } else if (chave == 4) {
-                numero_pressionado = 7;
+            } else if (getChave() == 4) {
+                setNumero_pressionado(7);
                 obterNum2(false);
             }
 
         } else if (botaoPressionado == botao_8) {
 
-            if (chave == 0) {
+            if (getChave() == 0) {
                 controleDeEstrutura();
-                numero_pressionado = 8;
+                setNumero_pressionado(8);
                 obterNum1(false);
-            } else if (chave == 1) {
-                numero_pressionado = 8;
+            } else if (getChave() == 1) {
+                setNumero_pressionado(8);
                 obterNum1(false);
-            } else if (chave == 3) {
+            } else if (getChave() == 3) {
                 controleDeEstrutura();
-                numero_pressionado = 8;
+                setNumero_pressionado(8);
                 obterNum2(false);
-            } else if (chave == 4) {
-                numero_pressionado = 8;
+            } else if (getChave() == 4) {
+                setNumero_pressionado(8);
                 obterNum2(false);
             }
 
         } else if (botaoPressionado == botao_9) {
 
-            if (chave == 0) {
+            if (getChave() == 0) {
                 controleDeEstrutura();
-                numero_pressionado = 9;
+                setNumero_pressionado(9);
                 obterNum1(false);
-            } else if (chave == 1) {
-                numero_pressionado = 9;
+            } else if (getChave() == 1) {
+                setNumero_pressionado(9);
                 obterNum1(false);
-            } else if (chave == 3) {
+            } else if (getChave() == 3) {
                 controleDeEstrutura();
-                numero_pressionado = 9;
+                setNumero_pressionado(9);
                 obterNum2(false);
-            } else if (chave == 4) {
-                numero_pressionado = 9;
+            } else if (getChave() == 4) {
+                setNumero_pressionado(9);
                 obterNum2(false);
             }
 
         } else if (botaoPressionado == botao_igual) {
 
             // Talvez aqui mude
-            if (chave == 4) {
+            if (getChave() == 4) {
                 /* Se a chave estiver valendo 4, é para
                  * fazer a operação matemática. */
                 obterNum2(true);
@@ -208,73 +280,73 @@ public class Processador extends PainelGrafico{
 
         } else if (botaoPressionado == botao_soma) {
 
-            if (chave == 1) {
+            if (getChave() == 1) {
                 obterNum1(true);
-                operacao_pressionado = '+';
+                setOperacao_pressionado('+');
                 controleDeEstrutura();
-            } else if (chave == 2) {
+            } else if (getChave() == 2) {
                 /* Aqui é por conta que está sendo feito uma nova operação,
                  * com um resultado já processado anteriormente. */
-                operacao_pressionado = '+';
+                setOperacao_pressionado('+');
                 controleDeEstrutura();
             }
 
         } else if (botaoPressionado == botao_subt) {
 
-            if (chave == 0) {
-                operacao_pressionado = '-';
+            if (getChave() == 0) {
+                setOperacao_pressionado('-');
                 controleDeEstrutura();
-            } else if (chave == 1) {
+            } else if (getChave() == 1) {
                 obterNum1(true);
-                operacao_pressionado = '-';
+                setOperacao_pressionado('-');
                 controleDeEstrutura();
-            } else if (chave == 3) {
-                operacao_pressionado = '-';
+            } else if (getChave() == 3) {
+                setOperacao_pressionado('-');
                 controleDeEstrutura();
-            } else if (chave == 2) {
+            } else if (getChave() == 2) {
                 /* Aqui é por conta que está sendo feito uma nova operação,
                  * com um resultado já processado anteriormente. */
-                operacao_pressionado = '-';
+                setOperacao_pressionado('-');
                 controleDeEstrutura();
             }
 
 
         } else if (botaoPressionado == botao_mult) {
 
-            if (chave == 1) {
+            if (getChave() == 1) {
                 obterNum1(true);
-                operacao_pressionado = 'x';
+                setOperacao_pressionado('x');
                 controleDeEstrutura();
-            } else if (chave == 2) {
+            } else if (getChave() == 2) {
                 /* Aqui é por conta que está sendo feito uma nova operação,
                  * com um resultado já processado anteriormente. */
-                operacao_pressionado = 'x';
+                setOperacao_pressionado('x');
                 controleDeEstrutura();
             }
 
         } else if (botaoPressionado == botao_div) {
 
-            if (chave == 1) {
+            if (getChave() == 1) {
                 obterNum1(true);
-                operacao_pressionado = '/';
+                setOperacao_pressionado('/');
                 controleDeEstrutura();
-            } else if (chave == 2) {
+            } else if (getChave() == 2) {
                 /* Aqui é por conta que está sendo feito uma nova operação,
                  * com um resultado já processado anteriormente. */
-                operacao_pressionado = '/';
+                setOperacao_pressionado('/');
                 controleDeEstrutura();
             }
 
         } else if (botaoPressionado == botao_porcen) {
 
-             if (chave == 1) {
+             if (getChave() == 1) {
                 obterNum1(true);
-                operacao_pressionado = '%';
+                 setOperacao_pressionado('%');
                 controleDeEstrutura();
-             } else if (chave == 2) {
+             } else if (getChave() == 2) {
                  /* Aqui é por conta que está sendo feito uma nova operação,
                   * com um resultado já processado anteriormente. */
-                 operacao_pressionado = '%';
+                 setOperacao_pressionado('%');
                  controleDeEstrutura();
              }
 
@@ -282,42 +354,41 @@ public class Processador extends PainelGrafico{
 
             virgula = true;
 
-            if (chave == 1 || chave == 4) {
+            if (getChave() == 1 || getChave() == 4) {
                 atualizarCaixaOp(",");
             }
 
         } else if (botaoPressionado == botao_ac){
 
             // Botão de AC
-            operacao_pressionado = 'A';
-            System.out.println("AC?");
-            controleDeOperacoes(); // Atenção aqui
+            setOperacao_pressionado('A');
+            controleDeOperacoes();
         }
 
     }
 
     // Variáveis usadas para armazenar os números após a vírgula e antes
-    static Integer num_temp = 0, num_virg_temp = 0;
+
     public static void obterNum1(boolean operador) {
 
         if (!virgula) {
             // Se não foi digitado uma vírgula, então pegaremos a parte inteira.
 
-            num_temp = num_temp * 10 + numero_pressionado;
+            setNum_temp(num_temp * 10 + numero_pressionado);
             if (!operador) {
                 atualizarCaixaOp(String.valueOf(numero_pressionado));
             }
-            numero_pressionado = 0;
+            setNumero_pressionado(0);
 
         } else {
             /* Se pressionou para adicionar virgula, precisamos pegar os
                números após a virgula. */
 
-            num_virg_temp = num_virg_temp * 10 + numero_pressionado;
+            setNum_virg_temp(num_virg_temp * 10 + numero_pressionado);
             if (!operador) {
                 atualizarCaixaOp(String.valueOf(numero_pressionado));
             }
-            numero_pressionado = 0;
+            setNumero_pressionado(0);
 
         }
 
@@ -328,13 +399,13 @@ public class Processador extends PainelGrafico{
                então temos que converter os números após a virgula e antes da vírgula,
                para se colocar eles na variável num1. */
 
-            if (num_virg_temp == 0 && !virgula) {
+            if (getNum_virg_temp() == 0 && !virgula) {
 
                 // Testando para ver se foi pedido um número negativo.
                 if (struct.vet_opera[0] == '-') {
-                    num1 = ((num_temp.doubleValue()/10) * -1);
+                    setNum1(((num_temp.doubleValue()/10) * -1));
                 } else {
-                    num1 = (num_temp.doubleValue()/10);
+                    setNum1((num_temp.doubleValue()/10));
                 }
 
             } else {
@@ -347,10 +418,10 @@ public class Processador extends PainelGrafico{
                 // Testando para ver se foi pedido um número negativo.
                 if (struct.vet_opera[0] == '-') {
                     // Combinando a parte inteira e a parte decimal
-                    num1 = (num_temp.doubleValue() + ((double) num_virg_temp / divisor)) * -1;
+                    setNum1((num_temp.doubleValue() + ((double) num_virg_temp / divisor)) * -1);
                 } else {
                     // Combinando a parte inteira e a parte decimal
-                    num1 = num_temp.doubleValue() + ((double) num_virg_temp / divisor);
+                    setNum1(num_temp.doubleValue() + ((double) num_virg_temp / divisor));
                 }
 
             }
@@ -359,8 +430,8 @@ public class Processador extends PainelGrafico{
             controleDeEstrutura();
 
             // limpando as variáveis que usamos para armazenar números temporários.
-            num_virg_temp = 0;
-            num_temp = 0;
+            setNum_virg_temp(0);
+            setNum_temp(0);
             virgula = false;
 
         }
@@ -373,21 +444,21 @@ public class Processador extends PainelGrafico{
         if (!virgula) {
             // Se não foi digitado uma vírgula, então pegaremos a parte inteira.
 
-            num_temp = num_temp * 10 + numero_pressionado;
+            setNum_temp(num_temp * 10 + numero_pressionado);
             if (!operador) {
                 atualizarCaixaOp(String.valueOf(numero_pressionado));
             }
-            numero_pressionado = 0;
+            setNumero_pressionado(0);
 
         } else {
             /* Se pressionou para adicionar virgula, precisamos pegar os
                números após a virgula. */
 
-            num_virg_temp = num_virg_temp * 10 + numero_pressionado;
+            setNum_virg_temp(num_virg_temp * 10 + numero_pressionado);
             if (!operador) {
                 atualizarCaixaOp(String.valueOf(numero_pressionado));
             }
-            numero_pressionado = 0;
+            setNumero_pressionado(0);
 
         }
 
@@ -398,13 +469,13 @@ public class Processador extends PainelGrafico{
                então temos que converter os números após a vírgula e antes da vírgula,
                para se colocar eles na variável num1. */
 
-            if (num_virg_temp == 0 && !virgula) {
+            if (getNum_virg_temp() == 0 && !virgula) {
 
                 // Testando para ver se foi pedido um número negativo.
                 if (struct.vet_opera[3] == '-') {
-                    num2 = (num_temp.doubleValue()/10) * -1;
+                    setNum2((num_temp.doubleValue()/10) * -1);
                 } else {
-                    num2 = (num_temp.doubleValue()/10);
+                    setNum2((num_temp.doubleValue()/10));
                 }
 
             } else {
@@ -416,10 +487,10 @@ public class Processador extends PainelGrafico{
 
                 // Testando para ver se foi pedido um número negativo.
                 if (struct.vet_opera[3] == '-') {
-                    num2 = (num_temp.doubleValue() + ((double) num_virg_temp / divisor)) * -1;
+                    setNum2((num_temp.doubleValue() + ((double) num_virg_temp / divisor)) * -1);
                 } else {
                     // Combinando a parte inteira e a parte decimal
-                    num2 = num_temp.doubleValue() + ((double) num_virg_temp / divisor);
+                    setNum2(num_temp.doubleValue() + ((double) num_virg_temp / divisor));
                 }
 
             }
@@ -428,8 +499,8 @@ public class Processador extends PainelGrafico{
             controleDeEstrutura();
 
             // limpando as variáveis que usamos para armazenar números temporários.
-            num_virg_temp = 0;
-            num_temp = 0;
+            setNum_virg_temp(0);
+            setNum_temp(0);
             virgula = false;
 
         }
@@ -438,40 +509,38 @@ public class Processador extends PainelGrafico{
     // Instanciando um objeto da classe MinhaStruct.
     static MinhaStruct struct = new MinhaStruct();
 
-    // Chave para navegar entre os indices, começa no 0 e termina no 4.
-    static int chave = 0;
 
     public static void controleDeEstrutura () {
 
-        if (chave == 0 && operacao_pressionado == '-') {
-            struct.vet_opera[0] = operacao_pressionado;
+        if (getChave() == 0 && getOperacao_pressionado() == '-') {
+            struct.vet_opera[0] = getOperacao_pressionado();
             atualizarCaixaOp(String.valueOf(struct.vet_opera[0]));
-            operacao_pressionado = 'n';
-            chave = 1;
-        } else if (chave == 0 && struct.vet_opera[0] == 'n') {
-            chave = 1;
-        } else if (chave == 1) {
-            struct.vet_num[1] = num1;
-            chave = 2;
-        } else if (chave == 2) {
+            setOperacao_pressionado('n');
+            setChave(1);
+        } else if (getChave() == 0 && struct.vet_opera[0] == 'n') {
+            setChave(1);
+        } else if (getChave() == 1) {
+            struct.vet_num[1] = getNum1();
+            setChave(2);
+        } else if (getChave() == 2) {
             struct.vet_opera[2] = operacao_pressionado;
             atualizarCaixaOp(String.valueOf(struct.vet_opera[2]));
-            operacao_pressionado = 'n';
+            setOperacao_pressionado('n');
 
             if (struct.vet_opera[2] == '%') {
                 controleDeOperacoes();
             } else {
-                chave = 3;
+                setChave(3);
             }
 
-        } else if (chave == 3 && operacao_pressionado == '-') {
-            struct.vet_opera[3] = operacao_pressionado;
+        } else if (getChave() == 3 && getOperacao_pressionado() == '-') {
+            struct.vet_opera[3] = getOperacao_pressionado();
             atualizarCaixaOp(String.valueOf(struct.vet_opera[3]));
-            chave = 4;
-        } else if (chave == 3) {
-            chave = 4;
-        } else if (chave == 4) {
-            struct.vet_num[4] = num2;
+            setChave(4);
+        } else if (getChave() == 3) {
+            setChave(4);
+        } else if (getChave() == 4) {
+            struct.vet_num[4] = getNum2();
             controleDeOperacoes();
         }
 
@@ -479,14 +548,14 @@ public class Processador extends PainelGrafico{
 
     public static void controleDeOperacoes () {
 
-        if (operacao_pressionado == 'A'){
-            // AC, limpar tudo.
+        if (getOperacao_pressionado() == 'A'){
+            // AC, (limpar tudo).
             caixa_operacoes.setText(null);
-            chave = 0;
-            num1 = 0;
-            num2 = 0;
-            numero_pressionado = 0;
-            num_temp = 0;
+            setChave(0);
+            setNum1(0);
+            setNum2(0);
+            setNumero_pressionado(0);
+            setNum_temp(0);
 
             for (int i = 0; i < struct.vet_num.length; i++) {
                 struct.vet_num[i] = 0;
@@ -585,7 +654,7 @@ public class Processador extends PainelGrafico{
         struct.vet_opera[2] = 'n';
         struct.vet_opera[3] = 'n';
 
-        chave = 2;
+        setChave(2);
     }
 
     public static void atualizarCaixaOp(String texto) {
@@ -594,6 +663,7 @@ public class Processador extends PainelGrafico{
         String textoAtual = caixa_operacoes.getText();
         caixa_operacoes.setText(textoAtual + texto);
     }
+
     public void instanciaAcaoBotoes () {
 
         botao_igual.addActionListener(this::lerOpcaoBotao);
@@ -617,8 +687,9 @@ public class Processador extends PainelGrafico{
 
     }
 
-
+    // Serve apenas para saber se é um número inteiro ou não.
     public static boolean ehInteiro(double num) {
         return num == Math.floor(num);
     }
+    
 }
