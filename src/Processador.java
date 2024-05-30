@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
-public class Processador extends PainelGrafico{
+public class Processador extends PainelGrafico implements OpcoesCalculadora{
 
     // ***** Construtor *****
     public Processador () {
@@ -380,7 +380,7 @@ public class Processador extends PainelGrafico{
      * Este método faz todo o processo de pegar os números pressionados,
      * ao final converte eles para um só número.
      */
-    public static void obterNum1(boolean operador) {
+    public void obterNum1(boolean operador) {
 
         if (!virgula) {
             // Se não foi digitado uma vírgula, então pegaremos a parte inteira.
@@ -464,7 +464,7 @@ public class Processador extends PainelGrafico{
      * Este método faz todo o processo de pegar os números pressionados,
      * ao final converte eles para um só número, assim como obterNum1.
      */
-    public static void obterNum2(boolean operador) {
+    public void obterNum2(boolean operador) {
 
         if (!virgula) {
             // Se não foi digitado uma vírgula, então pegaremos a parte inteira.
@@ -545,11 +545,11 @@ public class Processador extends PainelGrafico{
     static MinhaStruct struct = new MinhaStruct();
 
     /**
-     * Este método vai controlar as duas estrutras de matrizes,
-     * estruturadas na classe MinhaStruct. Colocando os números
+     * Este método vai controlar as duas estrutras de vetores,
+     * definidas na classe MinhaStruct. Colocando os números
      * e operadores nos lugares corretos.
      */
-    public static void controleDeEstrutura () {
+    public void controleDeEstrutura() {
 
         if (getChave() == 0 && getOperacao_pressionado() == '-') {
             // Aqui a chave está na primeira posição e o usuario pressionou o símbolo negativo.
@@ -602,17 +602,30 @@ public class Processador extends PainelGrafico{
 
     }
 
-    public static void controleDeOperacoes () {
+    /**
+     * Este método cuida das operações matemáticas que uma calculadora faz.
+     * Para isto, tem condicionais para todos os tipos de operações
+     * disponiveis +, -, *, /, %.
+     */
+    public void controleDeOperacoes() {
 
         if (getOperacao_pressionado() == 'A'){
-            // AC, (limpar tudo).
+            // AC, (se deseja limpar tudo).
+
+            // Limpando a caixa de operações.
             caixa_operacoes.setText(null);
+            // Se coloca a chave para 0, para iniciar tudo de novo.
             setChave(0);
+            // Apagando o valor de num1.
             setNum1(0);
+            // Apagando o valor de num2.
             setNum2(0);
+            // Apagando o valor do número pressionado.
             setNumero_pressionado(0);
+            // Apagando o valor do número temporário.
             setNum_temp(0);
 
+            // Precisa dessa repetição?
             for (int i = 0; i < struct.vet_num.length; i++) {
                 struct.vet_num[i] = 0;
 
@@ -625,11 +638,15 @@ public class Processador extends PainelGrafico{
         } else if (struct.vet_opera[2] == '+') {
             // Se deseja fazer uma soma.
 
+            // Limpando a caixa de operações.
             caixa_operacoes.setText(null);
 
+            // Somando os dois números.
             double resul = struct.vet_num[1] + (struct.vet_num[4]);
+            // Verificar o que este método faz.
             resetaOpera(resul);
 
+            // Verificando se é inteiro, ou precisa de vírgula.
             if (ehInteiro(resul)) {
                 int resul_int = (int)resul;
                 atualizarCaixaOp(String.valueOf(resul_int));
@@ -640,11 +657,14 @@ public class Processador extends PainelGrafico{
         } else if (struct.vet_opera[2] == '-') {
             // Se deseja fazer uma subtração.
 
+            // Limpando a caixa de operações.
             caixa_operacoes.setText(null);
-
+            // Subtraindo dois números.
             double resul = struct.vet_num[1] - (struct.vet_num[4]);
+            // Verificar o que este método faz.
             resetaOpera(resul);
 
+            // Verificando se é inteiro, ou precisa de vírgula.
             if (ehInteiro(resul)) {
                 int resul_int = (int)resul;
                 atualizarCaixaOp(String.valueOf(resul_int));
@@ -655,11 +675,14 @@ public class Processador extends PainelGrafico{
         } else if (struct.vet_opera[2] == 'x') {
             // Se deseja fazer uma multiplicação.
 
+            // Limpando a caixa de operações.
             caixa_operacoes.setText(null);
-
+            // Multiplicando dois números.
             double resul = struct.vet_num[1] * (struct.vet_num[4]);
+            // Verificar o que este método faz.
             resetaOpera(resul);
 
+            // Verificando se é inteiro, ou precisa de vírgula.
             if (ehInteiro(resul)) {
                 int resul_int = (int)resul;
                 atualizarCaixaOp(String.valueOf(resul_int));
@@ -670,11 +693,14 @@ public class Processador extends PainelGrafico{
         } else if (struct.vet_opera[2] == '/') {
             // Se deseja fazer uma divisão.
 
+            // Limpando a caixa de operações.
             caixa_operacoes.setText(null);
-
+            // Dividindo dois números.
             double resul = struct.vet_num[1] / (struct.vet_num[4]);
+            // Verificar o que este método faz.
             resetaOpera(resul);
 
+            // Verificando se é inteiro, ou precisa de vírgula.
             if (ehInteiro(resul)) {
                 int resul_int = (int)resul;
                 atualizarCaixaOp(String.valueOf(resul_int));
@@ -685,11 +711,14 @@ public class Processador extends PainelGrafico{
         } else if (struct.vet_opera[2] == '%') {
             // Se deseja dividir por 100.
 
+            // Limpando a caixa de operações.
             caixa_operacoes.setText(null);
-
+            // Divindo o número da posição que está o num1 por 100.
             double resul = struct.vet_num[1] / 100;
+            // Verificar o que este método faz.
             resetaOpera(resul);
 
+            // Verificando se é inteiro, ou precisa de vírgula.
             if (ehInteiro(resul)) {
                 int resul_int = (int)resul;
                 atualizarCaixaOp(String.valueOf(resul_int));
@@ -699,27 +728,50 @@ public class Processador extends PainelGrafico{
         }
     }
 
+    /**
+     * Este método faz basicamente resetar os dados do vetor, só deixando
+     *  o novo valor processado na posição 1 do vetor de números.
+     */
     public static void resetaOpera(double resul) {
 
+        // Verificando se o número da primeira posição não é negativo.
         if (resul >= 0) {
+            // Se não for negativo coloca (n) na posição 0 em vez de deixar (-).
             struct.vet_opera[0] = 'n';
         }
 
+        // Coloca o resultado processado na posição 1.
         struct.vet_num[1] = resul;
+        // Zera a posição 4.
         struct.vet_num[4] = 0;
+        // Coloca (n) na posição da operação.
         struct.vet_opera[2] = 'n';
+        // Coloca (n) na posição do negativo que fica antes do num2.
         struct.vet_opera[3] = 'n';
 
+        // Coloca a chave para 2 (isso para se pressionar qual operação deseja).
         setChave(2);
     }
 
+    /**
+     * Este método basicamente atualiza a caixa de operações, está recebendo
+     * uma String, pois fica mais fácil de manipular os dados.
+     */
     public static void atualizarCaixaOp(String texto) {
 
         // Obtém o texto atual na caixa e adiciona o novo texto.
         String textoAtual = caixa_operacoes.getText();
+        // Junta o texto que já está e o novo.
         caixa_operacoes.setText(textoAtual + texto);
     }
 
+    /**
+     * Este método é responsável por associar um ActionListener a cada um dos botões da interface do usuário.
+     * A ação a ser executada quando qualquer um desses botões for clicado é definida no método lerOpcaoBotao.
+     * Este método deve ser chamado durante a inicialização da interface gráfica
+     * do usuário para garantir que todos os botões estejam funcionalmente
+     * vinculados às suas respectivas ações.
+     */
     public void instanciaAcaoBotoes () {
 
         botao_igual.addActionListener(this::lerOpcaoBotao);
